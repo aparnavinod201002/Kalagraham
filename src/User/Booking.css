@@ -1,0 +1,83 @@
+.contact_section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+  }
+  
+  .contact_section h2 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .contact_section .form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 48px;
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+  
+  .contact_section .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .contact_section .form-group label {
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .contact_section .d-flex {
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .contact_section button {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .contact_section .img-box {
+    position: relative;
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .contact_section .img-box img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .contact_section .img_overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .contact_section .img_overlay h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .contact_section .img_overlay button {
+    color: #fff;
+    background: none;
+    border: none;
+    font-size: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  

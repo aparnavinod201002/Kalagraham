@@ -1,0 +1,38 @@
+.profile-container {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  
+  .profile-pic-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 4px solid #ddd;
+  }
+  
+ 
+  .card {
+    border-radius: 12px;
+  }
+  
+  .card-header {
+    border-radius: 12px 12px 0 0;
+    font-size: 1.25rem;
+  }
+  
+  button.rounded-pill {
+    font-weight: bold;
+  }
+  
+  input.rounded-pill, textarea.rounded {
+    border-radius: 25px;
+  }
+  

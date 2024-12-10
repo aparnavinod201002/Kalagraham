@@ -1,0 +1,33 @@
+.carnival-details-container {
+    background-color: transparent; /* Light background */
+    padding: 20px;
+    margin: 20px auto;
+    border: 2px solid #ffc107; /* Warning color border */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  .carnival-details-container:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+  }
+  
+  .details span {
+    font-weight: bold;
+    color: #007bff; /* Primary color for span */
+  }
+  
+  .text-danger {
+    color: #dc3545; /* Danger color for requests */
+  }
+  
+  .status-pending {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-style: italic;
+    color: #6c757d; /* Muted color for status */
+  }
+  

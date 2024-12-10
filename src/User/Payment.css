@@ -1,0 +1,75 @@
+#form-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #card-front {
+    position: relative;
+  }
+  
+  #image-container {
+    text-align: center;
+  }
+  
+  #amount {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  label {
+    font-weight: bold;
+    color: black;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  #card-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #card-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  #cvc-container {
+    margin-top: 20px;
+  }
+  
+  #exp-container {
+    margin-top: 10px;
+  }
+  
+  #card-back {
+    margin-top: 20px;
+  }
+  
+  #card-stripe {
+    height: 60px;
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
