@@ -46,7 +46,7 @@ function ViewmoreCarnival() {
           className="heading_container"
           style={{ marginTop: "-90px", marginRight: "-450px" }}
         >
-          <h2>KALAGRAHUM</h2>
+          <h2>KALAGRAHAM</h2>
           <p>CrEaTe yOuR OwN SuNsHiNe</p>
         </div>
         <div className="client_container" style={{ marginRight: "-200px" }}>
