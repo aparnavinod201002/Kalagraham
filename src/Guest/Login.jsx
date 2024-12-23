@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, FloatingLabel, Form, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { loginAPI, NewPasswordAPI } from "../Services/allAPI";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { TokenAuthContext } from '../../ContextAPI/TokenAuth';
 function Login() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const [password, setPassword] = useState({ email: "", newpassword: "", confirm: "" });
   const [userData, setUserData] = useState({ email: "", password: "" });
-
+  const {isAuthorized,setIsAuthorized}=useContext(TokenAuthContext)
   const handleClose = () => setShow(false);
   const handleShow = (e) => {
     e.preventDefault();
