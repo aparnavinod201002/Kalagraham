@@ -42,6 +42,7 @@ function Login() {
         sessionStorage.setItem("username", result.data.existingUser.username);
         sessionStorage.setItem("userId", result.data.existingUser._id);
         sessionStorage.setItem("token", result.data.token);
+        setIsAuthorized(true)
         setUserData({ email: "", password: "" });
 
         if (result.data.existingUser.role === "Admin" || result.data.existingUser.password === "123") {
