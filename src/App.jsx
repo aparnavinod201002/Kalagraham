@@ -2,7 +2,7 @@
 import { Route,  Routes } from 'react-router-dom'
 import './App.css'
 import Dashboard from './Pages/Dashboard'
-import Header from './Components/Header'
+
 import DistrictView from './Pages/DistrictView'
 import LocationView from './Pages/LocationView'
 import CategoryView from './Pages/CategoryView'
@@ -45,7 +45,7 @@ function App() {
     
       <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/Dashboard' element={isAuthorized?<Dashboard/>:<Home/>}/>
+      <Route path='/Dashboard' element={<Dashboard/>}/>
       <Route path='/DistrictView' element={isAuthorized?<DistrictView/>:<Home/>}/>
       <Route path='/LocationView' element={isAuthorized?<LocationView/>:<Home/>}/>
       <Route path='/CategoryView' element={isAuthorized?<CategoryView/>:<Home/>}/>
@@ -54,14 +54,14 @@ function App() {
       
      
       <Route path='/ArtistReg' element={<ArtistReg/>}/>
-      <Route path='/ViewCarnival' element={isAuthorized?<ViewCarnival/>:<Home/>}/>
+      <Route path='/ViewCarnival' element={<ViewCarnival/>}/>
       <Route path='/SendRequest' element={isAuthorized?<ViewCarnival/>:<Home/>}/>
       <Route path='/Header1' element={<Header1/>}/>
       <Route path='/ImageGallery' element={isAuthorized?<ImageGallery/>:<Home/>}/>
       <Route path='/VideoGallary' element={isAuthorized?<VideoGallary/>:<Home/>}/>
      
       <Route path='/MyRequest' element={isAuthorized?<MyRequests/>:<Home/>}/>
-      <Route path='/index' element={isAuthorized?<Index/>:<Home/>}/>
+      <Route path='/index' element={<Index/>}/>
       <Route path='/ViewmoreCarnival' element={isAuthorized?<ViewmoreCarnival/>:<Home/>}/>
       <Route path='/Booking' element={isAuthorized?<Booking/>:<Home/>}/>
       <Route path='/Payment' element={isAuthorized?<Payment/>:<Home/>}/>

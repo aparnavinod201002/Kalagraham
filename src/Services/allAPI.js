@@ -164,3 +164,9 @@ export const NewPasswordAPI = async(password)=>{
 
 }
 
+
+export const UpdateImageGalleryAPI = async(formData)=>{
+    
+    return await commonAPI('PUT',`${server_url}/editimage`,formData,"")
+
+}

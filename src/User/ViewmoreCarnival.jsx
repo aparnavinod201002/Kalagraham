@@ -79,7 +79,7 @@ function ViewmoreCarnival() {
                     <h6>
                       <b>
                         {carnival
-                          ? `Join us from ${new Date(carnival.startdate).toLocaleDateString()} to ${new Date(carnival.enddate).toLocaleDateString()}. The gates open at ${carnival.locationname}.`
+                          ? `Join us from ${new Date(carnival.startdate).toLocaleDateString()} to ${new Date(carnival.enddate).toLocaleDateString()}. The gates open at ${carnival.locationname}, ${carnival.districtname}.`
                           : ""}
                       </b>
                     </h6>

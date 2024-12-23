@@ -110,7 +110,7 @@ requests:"Pending",
   
       if (result.status === 200) {
         handleClose();
-        toast.success('Carnival has successfully registered');
+        toast.success('Request has successfully registered');
        
       } else {
         toast.error("Failed to submit request. Please try again.");
@@ -129,11 +129,11 @@ requests:"Pending",
         <Row>
           {carnival.map((carnival, index) => (
             <Col md={4} key={index} className="mb-4">
-              <Card className="bg-transparent text-danger">
+              <Card className="bg-transparent text-danger" style={{boxShadow:"2px 4px 6px grey"}}>
                 <Card.Img
                   variant="top"
                   src={`${server_url}/uploads/${carnival?.carnivalImage}`}
-                  style={{ width: "100%", height: "300%px" }}
+                  style={{ width: "100%", height: "500px" }}
                   alt={carnival.title}
                 />
                 <Card.Body>

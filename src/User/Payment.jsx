@@ -7,45 +7,44 @@ import './Payment.css';
 import Header2 from '../Components/Header2';
 
 const Payment = () => {
+  const TO_ACCOUNT = '1265843643257896'; // Fixed toAccount value
   const [payment, setPayment] = useState(null);
   const [fromAccount, setFromAccount] = useState('');
-  const [toAccount, setToAccount] = useState('');
   const [expMonth, setExpMonth] = useState('');
   const [expYear, setExpYear] = useState('');
   const [cvc, setCvc] = useState('');
-  const [totalAmount, setTotalAmount] = useState(null); // Default amount for demonstration
+  const [totalAmount, setTotalAmount] = useState(null);
   const [userId, setUserId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Get total amount and user ID from session storage
+    // Retrieve total amount and user ID from session storage
     setTotalAmount(sessionStorage.getItem('totalAmount'));
     const storedUserId = sessionStorage.getItem('userId');
-    if (storedUserId) setUserId(storedUserId);
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
   }, []);
 
   useEffect(() => {
     const fetchPayment = async () => {
+      if (!userId) return;
+
       try {
-        if (userId) {
-          const result = await GetBookingAPI(userId);
+        const result = await GetBookingAPI(userId);
 
-          if (result.status === 200 && result.data.length > 0) {
-            // Filter the first unpaid booking (PaymentStatus: 'Pending')
-            const unpaidBooking = result.data.find((booking) => booking.PaymentStatus === 'Pending');
+        if (result.status === 200 && result.data.length > 0) {
+          const unpaidBooking = result.data.find((booking) => booking.PaymentStatus === 'Pending');
 
-            if (unpaidBooking) {
-              setPayment(unpaidBooking);
-              setTotalAmount(unpaidBooking.total_amount);
-
-              // Store payment ID in sessionStorage
-              sessionStorage.setItem('paymentId', unpaidBooking._id);
-            } else {
-              toast.info('No unpaid bookings available.');
-            }
+          if (unpaidBooking) {
+            setPayment(unpaidBooking);
+            setTotalAmount(unpaidBooking.total_amount);
+            sessionStorage.setItem('paymentId', unpaidBooking._id);
           } else {
-            toast.error('No bookings found for this user.');
+            toast.info('No unpaid bookings available.');
           }
+        } else {
+          toast.error('No bookings found for this user.');
         }
       } catch (error) {
         console.error('Error fetching payment details:', error);
@@ -57,16 +56,12 @@ const Payment = () => {
   }, [userId]);
 
   const validateFields = () => {
-    if (!fromAccount || !toAccount || !expMonth || !expYear || !cvc || !totalAmount) {
+    if (!fromAccount || !expMonth || !expYear || !cvc || !totalAmount) {
       toast.error('All fields are required.');
       return false;
     }
     if (fromAccount.length !== 16 || isNaN(fromAccount)) {
       toast.error('From Account must be a 16-digit number.');
-      return false;
-    }
-    if (toAccount.length !== 16 || isNaN(toAccount)) {
-      toast.error('To Account must be a 16-digit number.');
       return false;
     }
     if (!/^\d{2}$/.test(expMonth) || parseInt(expMonth, 10) < 1 || parseInt(expMonth, 10) > 12) {
@@ -87,12 +82,11 @@ const Payment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate fields
     if (!validateFields()) return;
 
     const paymentData = {
       fromAccount,
-      toAccount,
+      toAccount: TO_ACCOUNT,
       expMonth,
       expYear,
       cvc,
@@ -104,22 +98,22 @@ const Payment = () => {
     try {
       const result = await PaymentAPI(paymentData);
 
-      if (result?.status === 200 && result?.data) {
-        navigate('/Index');
+      if (result?.status === 200) {
         toast.success('Payment Successful!');
+        navigate('/Index');
       } else {
         toast.warning(result?.data?.message || 'Payment failed. Try again.');
       }
-    } catch (err) {
-      console.error('Error during payment:', err);
-      const errorMessage = err?.response?.data?.error || 'An error occurred. Please try again later.';
+    } catch (error) {
+      console.error('Error during payment:', error);
+      const errorMessage = error?.response?.data?.error || 'An error occurred. Please try again later.';
       toast.error(errorMessage);
     }
   };
 
   return (
     <>
-    <Header2/>
+      <Header2 />
       <div style={{ marginTop: '60px' }}>
         <div id="form-container">
           <form onSubmit={handleSubmit}>
@@ -144,11 +138,9 @@ const Payment = () => {
               <input
                 type="text"
                 id="toaccount"
-                placeholder="1234 5678 9101 1112"
-                value={toAccount}
-                onChange={(e) => setToAccount(e.target.value)}
+                value={TO_ACCOUNT}
+                readOnly
                 maxLength="16"
-                required
               />
 
               <div id="exp-container">

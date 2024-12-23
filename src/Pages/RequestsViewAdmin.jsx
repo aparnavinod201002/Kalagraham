@@ -42,7 +42,7 @@ function RequestsViewAdmin() {
                     handleClose();
                     toast.success(`Response successfully submitted`);
                     getRequest(); // Optionally refresh data after submission
-                    navigate('/DistrictView');
+                   
                 } else {
                     toast.warning("Failed to submit the response. Please try again.");
                 }

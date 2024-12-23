@@ -17,6 +17,7 @@ import { DeleteVideoGallaryAPI, VideoGallaryGetAPI, VideoGalleryRegAPI } from '.
 import { server_url } from '../Services/server_url';
 
 function VideoGallary() {
+  
 const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -77,7 +78,7 @@ const [show, setShow] = useState(false);
         if (result.status === 200) {
           getVideoGallary ()
           handleClose();
-          toast.success('Image Gallery successfully registered');
+          toast.success('Video Gallery successfully registered');
           navigate('/VideoGallary');
           setVideoGallary({ title: '', description: '', image: '',url:'' });
         }
@@ -146,8 +147,18 @@ const handleDelete = async (videogallaryId) => {
                 />
                 <Card.Body>
                   <Card.Text className="text-center">
-                    <h2><strong style={{color:"brown"}}>Title: {videoGallaryGet.title} </strong></h2>
-                   <h4><strong className='text-warning'>Description: {videoGallaryGet.description}</strong> </h4> 
+                    <h2><strong className='text-warning'> {videoGallaryGet.title} </strong></h2>
+                    <h4>
+  <a 
+    href=" "
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="text-warning"
+    style={{ textDecoration: 'none' }}
+  >
+    <strong>Description: {videoGallaryGet.description}</strong>
+  </a>
+</h4>
                     <h4><strong className='text-warning'>Video URL: {videoGallaryGet.url}</strong> </h4>
                    
                   </Card.Text>

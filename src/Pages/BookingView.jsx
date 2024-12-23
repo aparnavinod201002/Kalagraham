@@ -68,7 +68,7 @@ const [getPayment,setGetPayment]=useState([])
     return (
       <>
        <Header/>
-        <div style={styles.container}>
+        <div style={{color:"black"}}>
            
             <h1 style={styles.title} className='text-info'>Payment Details</h1>
             {error && <p style={{ color: "red" }}>{error}</p>}
@@ -100,7 +100,7 @@ const [getPayment,setGetPayment]=useState([])
                             <p style={styles.email}>
                                 Required Date: {new Date(booking.required_date).toLocaleDateString()}
                             </p>
-                            <button
+                            <button className='btn btn-info'
                   style={styles.deleteButton}
                   onClick={() => handleDeleteBooking(booking._id)}
                 >
@@ -135,7 +135,7 @@ const styles = {
     container: {
         padding: '20px',
         fontFamily: 'Arial, sans-serif',
-        backgroundColor: '#f9f9f9',
+        backgroundColor: 'dark',
     },
     title: {
         textAlign: 'center',
@@ -148,9 +148,9 @@ const styles = {
         gap: '20px',
     },
     card: {
-        backgroundColor: '#fff',
+        backgroundColor: 'dark',
         borderRadius: '10px',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        boxShadow: '2px 4px 6px rgba(0, 0, 0, 0.1)',
         padding: '20px',
         textAlign: 'center',
         transition: 'transform 0.2s ease, box-shadow 0.2s ease',

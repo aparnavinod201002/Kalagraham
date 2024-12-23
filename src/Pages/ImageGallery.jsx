@@ -112,17 +112,27 @@ function ImageGallery() {
   return (
     <>
       <Header1 />
-      <Container>
+      <Container style={{color:"white"}}>
         {/* Title Section */}
         <h3 className="text-warning text-center my-5" style={{ fontSize: '50px', textShadow: "2px 4px 6px grey" }}>
           Images Gallery
         </h3>
-
+        <Row>
+          <Col md={4} sm={6} xs={12} className="d-flex align-items-center justify-content-center">
+            <Button
+              className="btn btn-warning shadow mb-4"
+              style={{ padding: '15px 30px' }}
+              onClick={handleShow}
+            >
+              Add More Images
+            </Button>
+          </Col>
+        </Row>
         <Row>
           {/* Display images in a 4-card grid */}
           {imageGallaryGet?.length > 0 ? imageGallaryGet.map((imagegallaryGet, index) => (
             <Col md={3} sm={6} xs={12} key={index} className="mb-4">
-              <Card className="shadow-sm h-100">
+              <Card className="shadow-sm h-90">
                 <Card.Img
                   variant="top"
                   src={`${server_url}/uploads/${imagegallaryGet?.image}`}
@@ -145,17 +155,7 @@ function ImageGallery() {
           )) : <p className='text-danger' style={{ textAlign: "center" }}>Not Found</p>}
         </Row>
 
-        <Row>
-          <Col md={4} sm={6} xs={12} className="d-flex align-items-center justify-content-center">
-            <Button
-              className="btn btn-warning shadow"
-              style={{ padding: '15px 30px' }}
-              onClick={handleShow}
-            >
-              Add More Images
-            </Button>
-          </Col>
-        </Row>
+       
       </Container>
 
       {/* Add Image Modal */}

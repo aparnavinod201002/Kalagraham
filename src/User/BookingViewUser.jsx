@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { DeleteBookingAPI, GetBookingAPI, PaymentGetByIdAPI, carnivalGetAPI } from "../Services/allAPI";
+import {
+  DeleteBookingAPI,
+  GetBookingAPI,
+  PaymentGetByIdAPI,
+  carnivalGetAPI,
+} from "../Services/allAPI";
 import Header2 from "../Components/Header2";
+import { useNavigate } from "react-router-dom";
 
 function BookingViewUser() {
   const [userId, setUserId] = useState(null);
@@ -8,8 +14,7 @@ function BookingViewUser() {
   const [selectedCarnival, setSelectedCarnival] = useState(null);
   const [error, setError] = useState("");
   const [selectedPayment, setSelectedPayment] = useState(null);
-  
-  // Get userId from session storage on initial load
+const navigate = useNavigate()
   useEffect(() => {
     const storedUserId = sessionStorage.getItem("userId");
     if (storedUserId) {
@@ -17,7 +22,6 @@ function BookingViewUser() {
     }
   }, []);
 
-  // Fetch all bookings for the user
   useEffect(() => {
     const fetchBookings = async () => {
       try {
@@ -40,125 +44,131 @@ function BookingViewUser() {
     }
   }, [userId]);
 
-  // Fetch carnival details for a selected booking
-  const handleViewCarnival = async (carnivalid,id) => {
-    console.log("Button clicked, carnival ID:", carnivalid,id);
+  const handleViewCarnival = async (carnivalid, id) => {
     try {
-      if (!carnivalid,!id) {
+      if (!carnivalid || !id) {
         alert("Invalid carnival ID");
         return;
       }
-  
-  
+
       const carnivalResponse = await carnivalGetAPI(carnivalid);
       if (carnivalResponse.status === 200) {
-        setSelectedCarnival(carnivalResponse.data); // Set the carnival details
+        setSelectedCarnival(carnivalResponse.data);
       } else {
-        setSelectedCarnival(null); // Clear previous selection if no carnival found
-      
+        setSelectedCarnival(null);
       }
+
       const paymentResponse = await PaymentGetByIdAPI(id);
       if (paymentResponse.status === 200) {
-        setSelectedPayment(paymentResponse.data); // Set the carnival details
+        setSelectedPayment(paymentResponse.data);
       } else {
-        setSelectedPayment(null); // Clear previous selection if no carnival found
-     
+        setSelectedPayment(null);
       }
-        
-      
-    }
-       //delete
-    
-  
-    catch (error) {
+    } catch (error) {
       console.error("Error fetching carnival details:", error);
       setSelectedCarnival(null);
-      setSelectedPayment(null)
+      setSelectedPayment(null);
       alert("An error occurred while fetching carnival details.");
     }
-  }
-      
-    const handleDeleteBooking = async (bookingId) => {
-      try {
-        const result = await DeleteBookingAPI(bookingId); // Assume DeleteBookingAPI is defined
-        if (result.status === 200) {
-          setBookingDetails((prev) => prev.filter((booking) => booking._id !== bookingId));
-        } else {
-          console.error('Error deleting booking:', result);
-        }
-      } catch (err) {
-        console.error('Error:', err);
-      }
-    }
-  
-  
-  //
-      
+  };
 
-  
+  const handleDeleteBooking = async (bookingId) => {
+    try {
+      const result = await DeleteBookingAPI(bookingId);
+      if (result.status === 200) {
+        setBookingDetails((prev) =>
+          prev.filter((booking) => booking._id !== bookingId)
+        );
+      } else {
+        console.error("Error deleting booking:", result);
+      }
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  };
+
+  const handlePayment = async (bookingId) => {
+    // Add your payment logic here
+    navigate('/payment')
+  };
 
   return (
-    <div style={styles.container}>
-      <Header2/>
-      <h1 style={styles.title}>Booking Details</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <div style={styles.grid}>
-        {bookingDetails?.length > 0 ? (
-          bookingDetails.map((booking) => (
-            <div key={booking._id} style={styles.card}>
-              <p style={styles.email}>Ticket Count: {booking.ticket_count}</p>
-              <p style={styles.email}>Total Amount: {booking.total_amount}</p>
-              <p style={styles.email}>Payment Status: {booking.PaymentStatus}</p>
-              <p style={styles.email}>
-                Required Date: {new Date(booking.required_date).toLocaleDateString()}
-              </p>
-              <button
-                style={styles.button}
-                onClick={() => handleViewCarnival(booking.carnival_id,booking._id)}
-              >
-
-                View Carnival
-              </button>
-              <button className="btn btn-danger m-3"
+    <>
+      <Header2 />
+      <div style={styles.container}>
+        <h1 style={styles.title}>Booking Details</h1>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <div style={styles.grid}>
+          {bookingDetails?.length > 0 ? (
+            bookingDetails.map((booking) => (
+              <div key={booking._id} style={styles.card}>
+                <p style={styles.email}>Ticket Count: {booking.ticket_count}</p>
+                <p style={styles.email}>Total Amount: {booking.total_amount}</p>
+                <p style={styles.email}>
+                  Payment Status: {booking.PaymentStatus}
+                </p>
+                <p style={styles.email}>
+                  Required Date:{" "}
+                  {new Date(booking.required_date).toLocaleDateString()}
+                </p>
+                <button
+                  style={styles.button}
+                  onClick={() =>
+                    handleViewCarnival(booking.carnival_id, booking._id)
+                  }
+                >
+                  View Carnival
+                </button>
+                {booking.PaymentStatus === "Pending" && (
+                  <button
+                    style={styles.payButton}
+                    onClick={() => handlePayment(booking._id)}
+                  >
+                Pay Now
+                  </button>
+                )}
+                <button
+                  className="btn btn-danger m-3"
                   style={styles.deleteButton}
                   onClick={() => handleDeleteBooking(booking._id)}
                 >
                   Cancel
                 </button>
-            </div>
-          ))
-        ) : (
-          !error && <p>No Bookings Found</p>
-        )}
-      </div>
-
-      {/* Carnival Details Modal or Section */}
-      {selectedCarnival ?.length>0?selectedCarnival.map((carnival)=>(
-        <div style={styles.carnivalDetails}>
-         
-          <h3 className="text-dark"> {carnival.carnivalname || "N/A"}</h3>
-          <p className="text-dark">Location: {carnival.locationname || "N/A"}</p>
-          <p className="text-dark">
-            Start Date:{" "}
-            {new Date(carnival.startdate).toLocaleDateString() || "N/A"}
-          </p>
-          <p className="text-dark">
-            End Date:{" "}
-            {new Date(carnival.enddate).toLocaleDateString() || "N/A"}
-          </p>
-         
-          <button
-            style={styles.closeButton}
-            onClick={() => setSelectedCarnival(null)}
-          >
-            Close
-          </button>
+              </div>
+            ))
+          ) : (
+            !error && <p>No Bookings Found</p>
+          )}
         </div>
-      )) :<p>Not Found</p>}
 
-
-
-    </div>
+        {selectedCarnival?.length > 0
+          ? selectedCarnival.map((carnival) => (
+              <div style={styles.carnivalDetails}>
+                <h3 className="text-dark">
+                  {carnival.carnivalname || "N/A"}
+                </h3>
+                <p className="text-dark">
+                  Location: {carnival.locationname || "N/A"}
+                </p>
+                <p className="text-dark">
+                  Start Date:{" "}
+                  {new Date(carnival.startdate).toLocaleDateString() || "N/A"}
+                </p>
+                <p className="text-dark">
+                  End Date:{" "}
+                  {new Date(carnival.enddate).toLocaleDateString() || "N/A"}
+                </p>
+                <button
+                  style={styles.closeButton}
+                  onClick={() => setSelectedCarnival(null)}
+                >
+                  Close
+                </button>
+              </div>
+            ))
+          : null}
+      </div>
+    </>
   );
 }
 
@@ -192,6 +202,23 @@ const styles = {
   button: {
     marginTop: "10px",
     backgroundColor: "#007bff",
+    color: "#fff",
+    border: "none",
+    padding: "10px 20px",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+  payButton: {
+    marginTop: "10px",
+    backgroundColor: "#28a745",
+    color: "#fff",
+    border: "none",
+    padding: "10px 20px",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+  deleteButton: {
+    backgroundColor: "#dc3545",
     color: "#fff",
     border: "none",
     padding: "10px 20px",

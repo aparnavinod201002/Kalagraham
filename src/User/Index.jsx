@@ -196,7 +196,7 @@ const storeid=async()=>{
         <Row>
         {carnival?.length>0?carnival?.map((carnival) => (
           <Col md={4} key={index} className="mb-4">
-            <Card>
+            <Card style={{backgroundColor:"white",boxShadow:"2px 4px 6px grey"}}>
              <a href="ViewmoreCarnival"><Card.Img
   variant="top"
   src={`${server_url}/uploads/${carnival.carnivalImage}`}
@@ -206,10 +206,10 @@ const storeid=async()=>{
 />
 </a>
               <Card.Body>
-                <Card.Title>{carnival.carnivalname}</Card.Title>
-                <Card.Text><strong>Date:</strong> {carnival.startdate}</Card.Text>
-                <Card.Text><strong>Location:</strong> {carnival.locationname}</Card.Text>
-                <Card.Text>{carnival.description}</Card.Text>
+                <Card.Title className='text-warning'>{carnival.carnivalname}</Card.Title>
+                <Card.Text className='text-warning'><strong>Date:</strong> {carnival.startdate}</Card.Text>
+                <Card.Text className='text-warning'><strong>Location:</strong> {carnival.locationname}</Card.Text>
+                <Card.Text className='text-warning'>{carnival.description}</Card.Text>
                 
               </Card.Body>
             </Card>
