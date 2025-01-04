@@ -96,7 +96,7 @@ const navigate = useNavigate()
     <>
       <Header2 />
       <div style={styles.container}>
-        <h1 style={styles.title}>Booking Details</h1>
+        <h1 style={styles.title}  className="text-primary">Booking Details</h1>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div style={styles.grid}>
           {bookingDetails?.length > 0 ? (
@@ -111,8 +111,8 @@ const navigate = useNavigate()
                   Required Date:{" "}
                   {new Date(booking.required_date).toLocaleDateString()}
                 </p>
-                <button
-                  style={styles.button}
+                <button className=" btn btn-primary"
+                  
                   onClick={() =>
                     handleViewCarnival(booking.carnival_id, booking._id)
                   }
@@ -128,8 +128,8 @@ const navigate = useNavigate()
                   </button>
                 )}
                 <button
-                  className="btn btn-danger m-3"
-                  style={styles.deleteButton}
+                  className="btn btn-success m-3"
+               
                   onClick={() => handleDeleteBooking(booking._id)}
                 >
                   Cancel

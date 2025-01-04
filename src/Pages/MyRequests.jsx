@@ -37,10 +37,10 @@ function MyRequests() {
   };
 
   return (
-    <div className="bg-dark">
+    <div className="bg-light">
       <Header1 />
 
-      <h2 className="text-warning m-5" style={{ textAlign: "center", fontSize: "40px", textShadow: "2px 4px 6px black" }}><b>Requests</b></h2>
+      <h2 className="text-primary m-5" style={{ textAlign: "center", fontSize: "40px", textShadow: "2px 4px 6px black" }}><b>Requests</b></h2>
 
       <Row>
         {
@@ -58,7 +58,7 @@ function MyRequests() {
                     className="m-5"
                   >
                     <Card.Body>
-                      <Card.Title style={{ color: "brown", fontSize: "30px", textAlign: 'center' }}>
+                      <Card.Title className='text-primary' style={{ fontSize: "30px", textAlign: 'center' }}> 
                         <b>{requests.carnivalName}</b>
                       </Card.Title>
 

@@ -127,7 +127,7 @@ const handleDelete = async (videogallaryId) => {
       <Header1 />
       <Container>
         {/* Title Section */}
-        <h3 className="text-warning text-center my-5" style={{ fontSize: '50px',textShadow:"2px 4px 6px grey" }}>
+        <h3 className="text-primary text-center my-5" style={{ fontSize: '50px',textShadow:"2px 4px 6px grey" }}>
           Video Gallery
         </h3>
 
@@ -147,8 +147,8 @@ const handleDelete = async (videogallaryId) => {
                 />
                 <Card.Body>
                   <Card.Text className="text-center">
-                    <h2><strong className='text-warning'> {videoGallaryGet.title} </strong></h2>
-                    <h4>
+                    <h2><strong className='text-primary'> {videoGallaryGet.title} </strong></h2>
+                    <h6>
   <a 
     href=" "
     target="_blank" 
@@ -156,10 +156,10 @@ const handleDelete = async (videogallaryId) => {
     className="text-warning"
     style={{ textDecoration: 'none' }}
   >
-    <strong>Description: {videoGallaryGet.description}</strong>
+    <strong className='text-secondary'><span>Description :</span> {videoGallaryGet.description}</strong>
   </a>
-</h4>
-                    <h4><strong className='text-warning'>Video URL: {videoGallaryGet.url}</strong> </h4>
+</h6>
+                    <a href={videoGallaryGet.url}><strong style={{color:"red"}}>Video URL: {videoGallaryGet.url}</strong> </a>
                    
                   </Card.Text>
                   <button className='btn'  onClick={() => handleDelete(videoGallaryGet._id)} ><i className='fa-solid fa-trash text-danger'></i></button>
@@ -177,7 +177,7 @@ const handleDelete = async (videogallaryId) => {
             className="d-flex align-items-center justify-content-center"
           >
             <Button
-              className="btn btn-warning shadow"
+              className="btn btn-primary shadow"
               style={{ padding: '15px 30px' }}
               onClick={handleShow}
             >

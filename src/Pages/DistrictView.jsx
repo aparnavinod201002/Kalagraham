@@ -91,11 +91,11 @@ const [getDistrict,setGetDistrict]=useState([])
     <>
     <Header/>
        <div className='container mt-5 mb-5 d-flex justify-content-between'>
-        <h2>District Registration</h2>
+        <h2 className='text-primary'>District Registration</h2>
 
-        <Link style={{textDecoration:'none' ,fontSize:'25px'}}to={'/Dashboard'}  className='text-info'>Back To Home
+        <Link style={{textDecoration:'none' ,fontSize:'25px'}}to={'/Dashboard'}  className='text-primary'>Back To Home
 <i className='fa-solid fa-arrow-rotate-left fa-beat-fade'></i></Link>      </div>
-<button className='btn btn-info m-5 text-align-center ' onClick={handleShow}>Add More Districts +</button>
+<button className='btn btn-primary m-5 text-align-center ' onClick={handleShow}>Add More Districts +</button>
 <table className='table mb-5 container shadow w-100'>
     <thead>
         <tr>

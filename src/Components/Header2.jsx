@@ -21,7 +21,7 @@ function Header2() {
       {/* Navbar */}
       <Navbar
         expand="lg"
-        className="bg-secondary shadow-sm"
+        className="bg-light shadow-sm"
         style={{ padding: '10px 20px' }}
       >
         <Container className="d-flex justify-content-between">
@@ -32,10 +32,10 @@ function Header2() {
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: 'white',
+               
                 fontSize: '20px',
                 cursor: 'pointer',
-              }}
+              }} className='text-primary'
               onClick={handleShow}
             >
               <FaBars />
@@ -45,11 +45,11 @@ function Header2() {
               to="/"
               style={{
                 textDecoration: 'none',
-                color: 'white',
+               
                 marginLeft: '10px',
                 fontWeight: 'bold',
                 fontSize: '20px',
-              }}
+              }} className='text-primary'
             >
               Kalagraham
             </Link>
@@ -75,14 +75,14 @@ function Header2() {
         show={show}
         onHide={handleClose}
         style={{
-          backgroundColor: '#343a40',
+          backgroundColor: 'white',
           color: 'white',
         }}
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title
-            className="fw-bold"
-            style={{ color: '#f8f9fa', fontSize: '24px' }}
+            className="fw-bold text-primary"
+            style={{  fontSize: '24px' }} 
           >
             Menu
           </Offcanvas.Title>
@@ -92,14 +92,14 @@ function Header2() {
             {/* Menu Items */}
 
             <button
-              className="btn btn-dark mb-3 d-flex align-items-center"
+              className="btn btn-primary mb-3 d-flex align-items-center"
               style={{
                 textAlign: 'left',
                 borderRadius: '8px',
                 transition: 'background 0.3s ease',
               }}
             >
-              <FaVideo className="me-3 text-info" />
+              <FaVideo className="me-3 text-primary" />
               <Link
                 to="/Index"
                 onClick={handleClose}
@@ -114,7 +114,7 @@ function Header2() {
             </button>
 
             <button
-              className="btn btn-dark mb-3 d-flex align-items-center"
+              className="btn btn-primary mb-3 d-flex align-items-center"
               style={{
                 textAlign: 'left',
                 borderRadius: '8px',
@@ -136,7 +136,7 @@ function Header2() {
             </button>
 
             <button
-              className="btn btn-dark mb-3 d-flex align-items-center "
+              className="btn btn-primary mb-3 d-flex align-items-center "
               style={{
                 textAlign: 'left',
                 borderRadius: '8px',

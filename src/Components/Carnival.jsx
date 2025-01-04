@@ -6,7 +6,6 @@ import { server_url } from "../Services/server_url";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 function Carnival({ carnival }) {
   const [show, setShow] = useState(false);
   const [category, setCategory] = useState([]);
@@ -84,154 +83,177 @@ function Carnival({ carnival }) {
       toast.error("User not logged in. Please log in to send a request.");
       return;
     }
-  
+
     if (!selectedCategoryname || !selectedSubCategoryname || !aboutMe) {
       toast.info("Please fill in all required fields.");
       return;
     }
-  
+
     const requestData = {
       userId,
       carnivalName: selectedCarnival?.carnivalname,
       startDate: selectedCarnival?.startdate,
       endDate: selectedCarnival?.enddate,
-      locationName:selectedCarnival?.locationname,
-      districtName:selectedCarnival?.districtname,
-requests:"Pending",
+      locationName: selectedCarnival?.locationname,
+      districtName: selectedCarnival?.districtname,
+      requests: "Pending",
       categoryName: selectedCategoryname,
       subCategoryName: selectedSubCategoryname,
       aboutMe,
       description: selectedCarnival?.description,
       username
     };
+
     console.log(requestData);
     try {
       const result = await RequestAPI(requestData);
-  
+
       if (result.status === 200) {
         handleClose();
         toast.success('Request has successfully registered');
-       
       } else {
         toast.error("Failed to submit request. Please try again.");
       }
     } catch (error) {
-     
       toast.error("An error occurred while submitting the request.");
     }
   };
-  //
-  
-  
+
+  // Function to check if the carnival is live
+  const isCarnivalLive = (startDate, endDate) => {
+    const currentDate = new Date();
+    return currentDate >= new Date(startDate) && currentDate <= new Date(endDate);
+  };
+
+  // Separate live and upcoming carnivals
+  const liveCarnivals = carnival.filter((carnival) => isCarnivalLive(carnival.startdate, carnival.enddate));
+  const upcomingCarnivals = carnival.filter((carnival) => !isCarnivalLive(carnival.startdate, carnival.enddate));
+
   return (
     <>
       <Container>
-        <Row>
-          {carnival.map((carnival, index) => (
-            <Col md={4} key={index} className="mb-4">
-              <Card className="bg-transparent text-danger" style={{boxShadow:"2px 4px 6px grey"}}>
-                <Card.Img
-                  variant="top"
-                  src={`${server_url}/uploads/${carnival?.carnivalImage}`}
-                  style={{ width: "100%", height: "500px" }}
-                  alt={carnival.title}
-                />
-                <Card.Body>
-                  <Card.Title>{carnival.carnivalname}</Card.Title>
-                  <Card.Text> <strong>Description:</strong> {carnival.description}</Card.Text>
-                  <Card.Text>
-                    <strong>Start Date:</strong> {new Date(carnival.startdate).toLocaleDateString()}
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>End Date:</strong> {new Date(carnival.enddate).toLocaleDateString()}
-                  </Card.Text>
-                  
-                  <Card.Text>
-                    <strong>Location:</strong> {carnival.locationname}
-                  </Card.Text>
-                
-                  <Button variant="warning" onClick={() => handleShow(carnival)}>
-                    Send Request
-                  </Button>
-                </Card.Body>
-              </Card>
+      <Row>
+          {/* Live Carnivals Section */}
+          
+
+          {/* Search Component (You can insert your search bar here) */}
+
+          {/* Upcoming Carnivals Section */}
+          {upcomingCarnivals.length > 0 && (
+            <Col md={12} className="mb-4">
+                <h1 style={{ color: 'black', textShadow: "2px 4px 6px black" }} className='m-2 mb-5 m-5'>
+           <span className='text-primary'>Upcoming</span> Carnival
+        </h1>
+              <Row>
+                {upcomingCarnivals.map((carnival, index) => (
+                  <Col md={4} key={index} className="mb-4">
+                    <Card className="bg-transparent text-danger" style={{ boxShadow: "2px 4px 6px grey" }}>
+                      <Card.Img
+                        variant="top"
+                        src={`${server_url}/uploads/${carnival?.carnivalImage}`}
+                        style={{ width: "100%", height: "500px" }}
+                        alt={carnival.title}
+                      />
+                      <Card.Body>
+                        <Card.Title className="text-primary">{carnival.carnivalname}</Card.Title>
+                        <Card.Text className="text-secondary">
+                          <strong>Description:</strong> {carnival.description}
+                        </Card.Text>
+                        <Card.Text className="text-secondary">
+                          <strong className="text-secondary">Start Date:</strong> {new Date(carnival.startdate).toLocaleDateString()}
+                        </Card.Text>
+                        <Card.Text className="text-secondary">
+                          <strong>End Date:</strong> {new Date(carnival.enddate).toLocaleDateString()}
+                        </Card.Text>
+                        <Card.Text className="text-secondary">
+                          <strong>Location:</strong> {carnival.locationname}
+                        </Card.Text>
+
+                        <Button variant="primary" onClick={() => handleShow(carnival)}>
+                          Send Request
+                        </Button>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
             </Col>
-          ))}
+          )}
         </Row>
+
+        <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>{selectedCarnival?.carnivalname}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="row">
+              <div className="col-6">
+                <img
+                  height="200px"
+                  width="100%"
+                  src={`${server_url}/uploads/${selectedCarnival?.carnivalImage}`}
+                  alt=""
+                />
+              </div>
+              <div className="col-6">
+                <Form>
+                  <DropdownButton
+                    id="category-dropdown"
+                    title={selectedCategoryname || "Select Category"}
+                    variant="outline-secondary"
+                    onSelect={handleCategorySelect}
+                    className="mb-3 w-100"
+                  >
+                    {category.length > 0
+                      ? category.map((category) => (
+                          <Dropdown.Item key={category.id} eventKey={category.name}>
+                            {category.name}
+                          </Dropdown.Item>
+                        ))
+                      : <Dropdown.Item disabled>No Categories Available</Dropdown.Item>}
+                  </DropdownButton>
+
+                  <DropdownButton
+                    id="subcategory-dropdown"
+                    title={selectedSubCategoryname || "Select Sub Category"}
+                    variant="outline-secondary"
+                    onSelect={handleSubCategorySelect}
+                    className="mb-3 w-100"
+                  >
+                    {subcategory.length > 0
+                      ? subcategory.map((subcategory) => (
+                          <Dropdown.Item key={subcategory.id} eventKey={subcategory.name}>
+                            {subcategory.name}
+                          </Dropdown.Item>
+                        ))
+                      : <Dropdown.Item disabled>No Subcategories Available</Dropdown.Item>}
+                  </DropdownButton>
+
+                  <FloatingLabel controlId="aboutMe" label="About Me" className="mb-3">
+                    <Form.Control
+                      as="textarea"
+                      rows={3}
+                      placeholder="About Me .."
+                      value={aboutMe}
+                      onChange={(e) => setAboutMe(e.target.value)}
+                    />
+                  </FloatingLabel>
+                </Form>
+              </div>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button variant="primary" onClick={handleRequestSubmit}>
+              Send Request
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <ToastContainer autoClose={2000} position="top-center" theme="colored" />
       </Container>
-
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>{selectedCarnival?.carnivalname}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="row">
-            <div className="col-6">
-              <img
-                height="200px"
-                width="100%"
-                src={`${server_url}/uploads/${selectedCarnival?.carnivalImage}`}
-                alt=""
-              />
-            </div>
-            <div className="col-6">
-              <Form>
-                <DropdownButton
-                  id="category-dropdown"
-                  title={selectedCategoryname || "Select Category"}
-                  variant="outline-secondary"
-                  onSelect={handleCategorySelect}
-                  className="mb-3 w-100"
-                >
-                  {category.length > 0
-                    ? category.map((category) => (
-                        <Dropdown.Item key={category.id} eventKey={category.name}>
-                          {category.name}
-                        </Dropdown.Item>
-                      ))
-                    : <Dropdown.Item disabled>No Categories Available</Dropdown.Item>}
-                </DropdownButton>
-
-                <DropdownButton
-                  id="subcategory-dropdown"
-                  title={selectedSubCategoryname || "Select Sub Category"}
-                  variant="outline-secondary"
-                  onSelect={handleSubCategorySelect}
-                  className="mb-3 w-100"
-                >
-                  {subcategory.length > 0
-                    ? subcategory.map((subcategory) => (
-                        <Dropdown.Item key={subcategory.id} eventKey={subcategory.name}>
-                          {subcategory.name}
-                        </Dropdown.Item>
-                      ))
-                    : <Dropdown.Item disabled>No Subcategories Available</Dropdown.Item>}
-                </DropdownButton>
-
-                <FloatingLabel controlId="aboutMe" label="About Me" className="mb-3">
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    placeholder="About Me .."
-                    value={aboutMe}
-                    onChange={(e) => setAboutMe(e.target.value)}
-                  />
-                </FloatingLabel>
-              </Form>
-            </div>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleRequestSubmit}>
-            Send Request
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      <ToastContainer autoClose={2000} position="top-center" theme="colored" />
-  
     </>
   );
 }

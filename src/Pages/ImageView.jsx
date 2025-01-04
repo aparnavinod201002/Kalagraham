@@ -40,7 +40,7 @@ function ImageView() {
       <Container>
         {/* Title Section */}
         <h3
-          className="text-warning text-center my-5"
+          className="text-primary text-center my-5"
           style={{ fontSize: '50px', textShadow: '2px 4px 6px grey' }}
         >
           Images Gallery
@@ -65,12 +65,12 @@ function ImageView() {
                     <Col md={6}>
                       <Card.Body>
                         <Card.Text>
-                          <h2 className="text-center">
-                            <strong style={{ color: 'brown' }}>
+                          <h2 className="text-center text-primary">
+                            <strong >
                                {imagegallaryGet.title}
                             </strong>
                           </h2>
-                          <p className="text-warning text-center">
+                          <p className="text-secondary text-center">
                             <strong>Description: {imagegallaryGet.description}</strong>
                           </p>
                         </Card.Text>

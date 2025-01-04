@@ -35,7 +35,7 @@ function VideoView() {
       <Container>
         {/* Title Section */}
         <h3
-          className="text-warning text-center my-5"
+          className="text-primary text-center my-5"
           style={{ fontSize: '50px', textShadow: '2px 4px 6px grey' }}
         >
           Video Gallery
@@ -60,20 +60,20 @@ function VideoView() {
                     <Col md={6}>
                       <Card.Body>
                         <Card.Text>
-                          <h2 className="text-center">
-                            <strong style={{ color: 'brown' }}>
+                          <h2 className="text-center text-primary">
+                            
                               {video.title}
-                            </strong>
+                           
                           </h2>
-                          <p className="text-warning text-center">
+                          <p className="text-secondary text-center">
                             <strong>Description: {video.description}</strong>
                           </p>
-                          <p className="text-warning text-center">
+                          <p className="text-primary text-center">
                             <a
                               href={video.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-warning"
+                             
                               style={{ textDecoration: 'none' }}
                             >
                               Watch Video

@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { RegisterAPI } from '../Services/allAPI';
-import Header2 from '../Components/Header2';
 
 function UserReg() {
   const [userData, setUserData] = useState({
@@ -14,9 +13,10 @@ function UserReg() {
     password: '',
     role: 'user',
   });
-
+  const [value, setValue] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false); 
 
   const validateField = (name, value) => {
     let error = '';
@@ -64,13 +64,13 @@ function UserReg() {
       console.log(err);
     }
   };
+  
 
   return (
     <>
-      <Header2 />
       <div
         style={{
-          backgroundImage: `url("https://media.giphy.com/media/HYETDJHys0Hvi/giphy.gif")`,
+          backgroundImage: `url("")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: '100vh',
@@ -81,10 +81,10 @@ function UserReg() {
         }}
         className="d-flex justify-content-center align-items-center"
       >
-         <Link to="/" style={{ textDecoration: 'none', fontWeight: 'bolder' }} className="text-warning">
+        <div className="container w-75 bg-primary">
+          <Link to="/" style={{ textDecoration: 'none', fontWeight: 'bolder' }} className="text-warning">
             <i className="fa-solid fa-arrow-left"></i> Back To Home
           </Link>
-        <div className="container w-75 bg-dark">
           <div className="card shadow p-3 bg-transparent">
             <div className="row align-items-center">
               <div className="col-lg-6">
@@ -150,6 +150,7 @@ function UserReg() {
                         Register
                       </button>
                     </div>
+                    
                   </Form>
                 </div>
               </div>

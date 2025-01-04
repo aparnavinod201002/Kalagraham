@@ -42,11 +42,32 @@ function Booking() {
     }
   }, [carnivalId]);
 
+  const isDateWithinRange = (date, startDate, endDate) => {
+    const selectedDate = new Date(date);
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    return selectedDate >= start && selectedDate <= end;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!requiredDate) {
       setError("Please select a required date.");
+      return;
+    }
+
+    if (
+      carnival &&
+      !isDateWithinRange(requiredDate, carnival.startdate, carnival.enddate)
+    ) {
+      alert(
+        `Please select a date between ${new Date(
+          carnival.startdate
+        ).toLocaleDateString()} and ${new Date(
+          carnival.enddate
+        ).toLocaleDateString()}.`
+      );
       return;
     }
 
@@ -74,10 +95,10 @@ function Booking() {
   };
 
   return (
-    
     <Container>
-      <Header2/>
+      <Header2 />
       <h2 className="text-warning">Book Your Tickets</h2>
+      {error && <p className="text-danger">{error}</p>}
       <Row>
         <Col md={6}>
           <Form onSubmit={handleSubmit}>

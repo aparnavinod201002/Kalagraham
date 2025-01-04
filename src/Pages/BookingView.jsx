@@ -100,12 +100,7 @@ const [getPayment,setGetPayment]=useState([])
                             <p style={styles.email}>
                                 Required Date: {new Date(booking.required_date).toLocaleDateString()}
                             </p>
-                            <button className='btn btn-info'
-                  style={styles.deleteButton}
-                  onClick={() => handleDeleteBooking(booking._id)}
-                >
-                  Delete Payment
-                </button>
+                            
                         </div>
                     ))
                     : !error && <p></p>}

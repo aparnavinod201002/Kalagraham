@@ -1,1 +1,1 @@
-export const server_url ='https://serverkalagrahams.onrender.com'
+export const server_url ='https://kalagraham.onrender.com'

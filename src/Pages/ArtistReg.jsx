@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -76,12 +76,12 @@ function ArtistReg() {
       toast.error('An error occurred while registering.');
     }
   };
-
+  
   return (
     <>
       <div
         style={{
-          backgroundImage: `url("https://media.giphy.com/media/HYETDJHys0Hvi/giphy.gif")`,
+          backgroundImage: `url("")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: '100vh',
@@ -92,7 +92,7 @@ function ArtistReg() {
         }}
         className="d-flex justify-content-center align-items-center"
       >
-        <div className="container w-75 bg-dark">
+        <div className="container w-75 bg-primary">
           <Link to="/" style={{ textDecoration: 'none', fontWeight: 'bolder' }} className="text-warning">
             <i className="fa-solid fa-arrow-left"></i> Back To Home
           </Link>
@@ -165,7 +165,9 @@ function ArtistReg() {
                       <button className="btn btn-warning" onClick={handleRegister}>
                         Register
                       </button>
+
                     </div>
+                 
                   </Form>
                 </div>
               </div>

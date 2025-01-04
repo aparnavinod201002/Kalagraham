@@ -114,13 +114,13 @@ function ImageGallery() {
       <Header1 />
       <Container style={{color:"white"}}>
         {/* Title Section */}
-        <h3 className="text-warning text-center my-5" style={{ fontSize: '50px', textShadow: "2px 4px 6px grey" }}>
+        <h3 className="text-primary text-center my-5" style={{ fontSize: '50px', textShadow: "2px 4px 6px grey" }}>
           Images Gallery
         </h3>
         <Row>
           <Col md={4} sm={6} xs={12} className="d-flex align-items-center justify-content-center">
             <Button
-              className="btn btn-warning shadow mb-4"
+              className="btn btn-primary shadow mb-4"
               style={{ padding: '15px 30px' }}
               onClick={handleShow}
             >
@@ -143,8 +143,8 @@ function ImageGallery() {
                 />
                 <Card.Body>
                   <Card.Text className="text-center">
-                    <h2><strong style={{ color: "white" }}> {imagegallaryGet.title} </strong></h2>
-                    <strong className='text-warning'>Description: {imagegallaryGet.description}</strong>
+                    <h2><strong className='text-primary'> {imagegallaryGet.title} </strong></h2>
+                    <strong className='text-secondary'><span className='text-primary'>Description :</span> {imagegallaryGet.description}</strong>
                   </Card.Text>
                   <button className='btn' onClick={() => handleDelete(imagegallaryGet._id)}>
                     <i className='fa-solid fa-trash text-danger'></i>

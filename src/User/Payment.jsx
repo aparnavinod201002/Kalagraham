@@ -99,8 +99,9 @@ const Payment = () => {
       const result = await PaymentAPI(paymentData);
 
       if (result?.status === 200) {
-        toast.success('Payment Successful!');
+        
         navigate('/Index');
+        toast.success('Payment Successful!');
       } else {
         toast.warning(result?.data?.message || 'Payment failed. Try again.');
       }

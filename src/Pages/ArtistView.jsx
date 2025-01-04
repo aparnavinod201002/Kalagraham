@@ -26,7 +26,7 @@ function ArtistView() {
     
     <div style={styles.container}>
       <Header/>
-      <h1 style={styles.title}>User Directory</h1>
+      <h1 style={styles.title} className='text-primary'>User Directory</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div style={styles.grid}>
         {artists?.length > 0
@@ -38,7 +38,7 @@ function ArtistView() {
                 <p style={styles.email}>Password: {artists.password}</p>
                 <d-flex align-items-row>
                   <Link
-                    style={{ textDecoration: "none", color: "brown" }} className='m-3'
+                     className='m-3 text-primary' style={{textDecoration:"none"}}
                     to={`/requests/${artists._id}`} 
                   >
                     View Request Details
@@ -46,7 +46,7 @@ function ArtistView() {
                 
               
                   <Link
-                    style={{ textDecoration: "none", color: "darkgreen" }} className='m-3'
+                     className='m-3 text-secondary ' style={{textDecoration:"none"}}
                     to={`/imagegallaryget/${artists._id}`} 
                   >
                     View Image Gallary 
@@ -55,7 +55,7 @@ function ArtistView() {
 
               
                   <Link
-                    style={{ textDecoration: "none", color: "darkblue" }} className='m-3'
+                   className='m-3 text-primary' style={{textDecoration:"none"}}
                     to={`/VideoView/${artists._id}`} 
                   >
                     View Video Gallary

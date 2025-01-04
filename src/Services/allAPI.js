@@ -170,3 +170,25 @@ export const UpdateImageGalleryAPI = async(formData)=>{
     return await commonAPI('PUT',`${server_url}/editimage`,formData,"")
 
 }
+export const loginApiEmailAPI = async ({email} ) => {
+    return await commonAPI("GET", `${server_url}/loginemail/${email}`, "", "");
+  };
+  
+  export const IncomeAPI =async()=>{
+    return await commonAPI('GET',`${server_url}/totalIncome`,"","")
+}
+export const MoreBookedCarnivalAPI =async()=>{
+    return await commonAPI('GET',`${server_url}/morecarnival`,"","")
+}
+export const MostRequestedParticipationAPI =async()=>{
+    return await commonAPI('GET',`${server_url}/mostparticipation`,"","")
+}
+
+export const TestimonyAPI = async(feedbackData)=>{
+    return await commonAPI('POST',`${server_url}/testimony`,feedbackData,"")
+}
+
+export const GetTestimonyAPI = async()=>{
+    return await commonAPI('GET',`${server_url}/gettestimony`,"","")
+}
+

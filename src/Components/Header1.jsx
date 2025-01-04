@@ -21,7 +21,7 @@ function Header1() {
       {/* Navbar */}
       <Navbar
         expand="lg"
-        className="bg-secondary shadow-sm"
+        className="bg-light shadow-sm"
         style={{ padding: '10px 20px' }}
       >
         <Container className="d-flex justify-content-between">
@@ -32,10 +32,10 @@ function Header1() {
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: 'white',
+                
                 fontSize: '20px',
                 cursor: 'pointer',
-              }}
+              }} className='text-primary'
               onClick={handleShow}
             >
               <FaBars />
@@ -45,11 +45,11 @@ function Header1() {
               to="/"
               style={{
                 textDecoration: 'none',
-                color: 'white',
+                
                 marginLeft: '10px',
                 fontWeight: 'bold',
                 fontSize: '20px',
-              }}
+              }} className='text-primary'
             >
               Kalagraham
             </Link>
@@ -75,14 +75,14 @@ function Header1() {
         show={show}
         onHide={handleClose}
         style={{
-          backgroundColor: '#343a40',
+          backgroundColor: 'white',
           color: 'white',
         }}
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title
-            className="fw-bold"
-            style={{ color: '#f8f9fa', fontSize: '24px' }}
+            className="fw-bold text-primary"
+            style={{  fontSize: '24px' }} 
           >
             Menu
           </Offcanvas.Title>
@@ -92,7 +92,7 @@ function Header1() {
             {/* Menu Items */}
             
             <button
-              className="btn btn-dark mb-3 d-flex align-items-center"
+              className="btn btn-primary mb-3 d-flex align-items-center"
               style={{
                 textAlign: 'left',
                 borderRadius: '8px',
@@ -113,7 +113,7 @@ function Header1() {
               </Link>
             </button>
             <button
-              className="btn btn-dark mb-3 d-flex align-items-center"
+              className="btn btn-primary mb-3 d-flex align-items-center"
               style={{
                 textAlign: 'left',
                 borderRadius: '8px',
@@ -135,7 +135,7 @@ function Header1() {
             </button>
 
             <button
-              className="btn btn-dark mb-3 d-flex align-items-center"
+              className="btn btn-primary mb-3 d-flex align-items-center"
               style={{
                 textAlign: 'left',
                 borderRadius: '8px',
@@ -157,7 +157,7 @@ function Header1() {
             </button>
 
             <button
-              className="btn btn-dark d-flex mb-3 align-items-center"
+              className="btn btn-primary d-flex mb-3 align-items-center"
               style={{
                 textAlign: 'left',
                 borderRadius: '8px',
@@ -178,7 +178,7 @@ function Header1() {
               </Link>
             </button>
             <button
-              className="btn btn-dark mb-3 d-flex align-items-center"
+              className="btn btn-primary mb-3 d-flex align-items-center"
               style={{
                 textAlign: 'left',
                 borderRadius: '8px',

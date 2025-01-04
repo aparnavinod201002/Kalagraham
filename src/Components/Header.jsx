@@ -19,14 +19,14 @@ function Header() {
 
   return (
     <>
-      <Navbar className="bg-info">
+      <Navbar className="bg-light">
         <Container className="d-flex justify-content-between">
           {/* Brand Name and Sidebar Toggle */}
           <Navbar.Brand>
-            <button style={{ background: "transparent", border: "none" }} onClick={handleShow}>
-              <span className="navbar-toggler-icon"></span>
+            <button style={{ background: "transparent", border: "none" }} className='text-primary' onClick={handleShow} >
+              <span className="navbar-toggler-icon "></span>
             </button>
-            <Link to={'/'} style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to={'/'} style={{ textDecoration: 'none',  }} className='text-primary'> 
               Kalagraham
             </Link>
           </Navbar.Brand>
@@ -49,42 +49,42 @@ function Header() {
       {/* Sidebar Offcanvas */}
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Menu</Offcanvas.Title>
+          <Offcanvas.Title className='text-primary'>Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div className="d-flex flex-column m-0 p-0">
-            <button className="btn btn-transition-info">
-              <Link to={'/DistrictView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-info">
+            <button className="btn btn-transition-primary">
+              <Link to={'/DistrictView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-primary">
                 <h5>View District</h5>
               </Link>
             </button>
-            <button className="btn btn-transition-info">
-              <Link to={'/LocationView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-info">
+            <button className="btn btn-transition-primary">
+              <Link to={'/LocationView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-primary">
                 <h5>View Location</h5>
               </Link>
             </button>
-            <button className="btn btn-transition-info">
-              <Link to={'/CategoryView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-info">
+            <button className="btn btn-transition-primary">
+              <Link to={'/CategoryView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-primary">
                 <h5>View Category</h5>
               </Link>
             </button>
-            <button className="btn btn-transition-info">
-              <Link to={'/SubcategoryView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-info">
+            <button className="btn btn-transition-primary">
+              <Link to={'/SubcategoryView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-primary">
                 <h5>View Subcategory</h5>
               </Link>
             </button>
-            <button className="btn btn-transition-info">
-              <Link to={'/CarnivalView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-info">
+            <button className="btn btn-transition-primary">
+              <Link to={'/CarnivalView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-primary">
                 <h5>View Carnival</h5>
               </Link>
             </button>
-            <button className="btn btn-transition-info">
-              <Link to={'/usersView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-info">
+            <button className="btn btn-transition-primary">
+              <Link to={'/usersView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-primary">
                 <h5>View User Details</h5>
               </Link>
             </button>
-            <button className="btn btn-transition-info">
-              <Link to={'/artistsView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-info">
+            <button className="btn btn-transition-primary">
+              <Link to={'/artistsView'} onClick={toggleSidebar} style={{ textDecoration: "none" }} className="d-block mb-2 fw-bolder text-primary">
                 <h5>View Artist Details</h5>
               </Link>
             </button>
