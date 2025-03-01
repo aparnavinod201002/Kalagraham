@@ -5,6 +5,8 @@ import { carnivalGetAPI, GetTestimonyAPI, IncomeAPI, MoreBookedCarnivalAPI, Most
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 
 function Dashboard() {
+  const [name,setName]=useState('aprana')
+  const feature = "dummy"
   const [totalIncomes, setTotalIncome] = useState('');
   const [carnival, setCarnival] = useState([]);
   const [moreBookCarnival, setMoreBookCarnival] = useState('');
