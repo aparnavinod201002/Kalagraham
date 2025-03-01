@@ -15,6 +15,7 @@ function ArtistReg() {
     role: 'artist',
   });
 
+// set errors messege
   const [errors, setErrors] = useState({});
 
   // Function to validate fields dynamically
@@ -102,7 +103,7 @@ function ArtistReg() {
                 <img
                   src="https://i.pinimg.com/originals/1e/46/82/1e46824815d0e608bbc22fc3d6975b09.jpg"
                   alt=""
-                  width="80%"
+                  width="100%"
                 />
               </div>
               <div className="col-lg-6">
